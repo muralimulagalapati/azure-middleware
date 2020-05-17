@@ -1,29 +1,6 @@
-const Joi = require('joi');
-
-const validateSchema = schema => (ctx, input) => {
-  const { error } = Joi.validate(input, schema);
-  return ctx.next(
-    error
-      ? {
-          message: `Invalid input, ${error.message}`,
-          details: JSON.stringify(error.details),
-          input: JSON.stringify(input)
-        }
-      : null
-  );
-};
-
 class FunctionMiddlewareHandler {
   constructor() {
     this.stack = [];
-  }
-
-  validate(schema) {
-    if (!schema) {
-      throw Error('schema should not be empty!');
-    }
-    this.stack = [{ fn: validateSchema(schema) }, ...this.stack];
-    return this;
   }
 
   use(fn) {
