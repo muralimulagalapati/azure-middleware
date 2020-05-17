@@ -62,6 +62,5 @@
     "prettier-eslint": "^8.2.1"
   },
   "dependencies": {
-    "joi": "^14.3.0"
   }
 }
